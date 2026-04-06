@@ -1,0 +1,15 @@
+Start Jenkins: Open Jenkins in your browser.
+
+Create Pipeline: * Click New Item -> Name it (e.g., Conference-Pipeline) -> Select Pipeline -> Click OK.
+
+Under the Pipeline section, choose Pipeline script from SCM.
+
+Select Git, paste your GitHub repository URL, specify your branch (usually main or master), and save.
+
+Run Pipeline: Click Build Now in Jenkins. This will trigger the checkout, Docker build, and kubectl apply commands automatically.
+
+Verify in Docker Desktop: * Ensure Kubernetes is enabled in your Docker Desktop settings.
+
+Open your terminal and run kubectl get pods and kubectl get services to verify the deployment is running.
+
+Open your web browser and go to http://localhost:30080 to view your deployed Conference Web Page.
