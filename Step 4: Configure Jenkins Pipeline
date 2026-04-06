@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo 'Building Docker Image...'
+                    sh 'docker build -t conference-web-app:latest .'
+                }
+            }
+        }
+        
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    echo 'Deploying to Kubernetes...'
+                    // Ensure the Jenkins user has permissions to run kubectl commands
+                    sh 'kubectl apply -f deployment.yaml'
+                }
+            }
+        }
+    }
+}
