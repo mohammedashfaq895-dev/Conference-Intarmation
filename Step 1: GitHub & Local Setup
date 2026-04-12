@@ -1,2 +1,79 @@
 git clone https://github.com/your-username/conference-web-app.git
 cd conference-web-app
+
+git clone <repo-url>
+cd repo
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+git remote -v
+changes
+git add .
+git status
+git commit -m "first commit"
+git push origin main
+
+
+
+FROM nginx:alpine 
+COPY . /usr/share/nginx/html
+
+
+
+docker build -t my-app -f Docker.dockerfile .
+
+
+
+stop all containers 
+  STEP 8: Run Docker Container 
+docker run -d -p 8088:80 my-app
+
+
+run kubernetes
+kubectl get nodes
+
+
+create deployment file
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: my-app
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+
+create service file
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  type: NodePort
+  selector:
+    app: my-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007
+
+
+kubectl apply -f deployement.yaml
+kubectl apply -f sevice.yaml
+
+
+save all files in Document-
+cd Document
